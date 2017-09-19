@@ -3,23 +3,25 @@
 namespace AppBundle\Service;
 
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeViewModel
 {
-    /** @var EntityManager $entityManager */
+    /** @var EntityManagerInterface $entityManager */
     private $entityManager;
     /** @var ContainerInterface $container */
     private $container;
+    /** @var Request $request */
+    private $request;
 
     /**
      * IndexViewModel constructor.
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      * @param ContainerInterface $container
      */
-    public function __construct(EntityManager $entityManager, ContainerInterface $container)
+    public function __construct(EntityManagerInterface $entityManager, ContainerInterface $container)
     {
         $this->entityManager = $entityManager;
         $this->container = $container;
@@ -31,7 +33,7 @@ class HomeViewModel
      */
     public function assemble(Request $request):HomeViewModel
     {
-        $this->base_dir = dirname($this->container->get('kernel')->getRootDir());
+        $this->request = $request;
         return $this;
     }
 }

@@ -4,10 +4,13 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Lizz Aphrodite{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% include 'Common/header.html.twig' %}
         {% block body %}{% endblock %}
+        {% include 'Common/footer.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
