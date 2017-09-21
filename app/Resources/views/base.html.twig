@@ -4,13 +4,24 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Lizz Aphrodite{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
+        {% stylesheets
+            '@bootstrap_css'
+            '@AppBundle/Resources/public/css/*' %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+        {% endstylesheets %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% include 'Common/header.html.twig' %}
         {% block body %}{% endblock %}
         {% include 'Common/footer.html.twig' %}
+
+        {% javascripts
+            '@jquery'
+            '@bootstrap_js'
+            '@AppBundle/Resources/public/js/*' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
